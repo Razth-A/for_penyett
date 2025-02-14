@@ -1,0 +1,419 @@
+body {
+    background: linear-gradient(135deg, #ff9cae, #ff758f, #ffb3c1);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    color: white; /* Warna teks agar kontras */
+    font-family: 'Poppins', sans-serif; /* Gunakan font modern */
+    text-align: center;
+}
+
+/* Animasi gradasi bergerak */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.envelope-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+#envelope {
+    position: relative;
+    height: 180px;
+    width: 280px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    top: 50%;
+    background-color: #FF6863;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 2; /* Pastikan amplop tidak menutupi surat */
+}
+
+#envelope:hover {
+    cursor: pointer;
+}
+
+.front {
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: 3;
+}
+
+.flap {
+    border-top: 98px solid #FF6863;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-bottom: 82px solid transparent;
+    transform-origin: top;
+}
+
+.pocket {
+    border-left: 140px solid #FF8BA0;
+    border-right: 140px solid #FF8BA0;
+    border-bottom: 90px solid #FFA8B5;
+    border-top: 90px solid transparent;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.letter {
+    position: absolute;
+    background-color: white;
+    width: 98%;
+    height: 98%;
+    top: 3%; /* Posisi awal di dalam amplop */
+    left: 5%;
+    transform: translate(-50%, 0);
+    border-radius: 10px;
+    box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
+    transition: transform 0.6s ease-in-out, top 0.6s ease-in-out, z-index 0.2s ease-in-out;
+    z-index: 1; /* Awalnya di belakang amplop */
+}
+
+.letter:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.words {
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    height: 14%;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
+
+.line1 {
+    top: 0%;
+}
+.line2 {
+    top: 11%;
+}
+.line3 {
+    top: 70%;
+    text-align: center;
+}
+.line4 {
+    top: 80%;
+    text-align: center;
+}
+
+.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1; /* Pastikan flap ada di belakang */  
+}
+
+.close .flap {
+    transform: rotatex(0deg);
+    transition: transform 0.4s 0.6s ease, z-index 1s;
+    z-index: 5;
+}
+
+.open .letter {
+    top: -20%;
+    transform: translate(-50%, 0) scale(1.2);    
+    z-index: 10; /* Pastikan surat muncul di depan amplop */
+}
+
+.close .letter {
+    top: 2%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 1; /* Tetap di belakang amplop */
+}
+
+.hearts {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.heart {
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+}
+
+.heart:before, .heart:after {
+    position: absolute;
+    content: "";
+    background: #d00000;
+    width: 50px;
+    height: 80px;
+    left: 50px;
+    top: 0;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.close .heart {
+    opacity: 0;
+    animation: none;
+}
+
+.a1 {
+    left: 20%;
+    transform: scale(0.6);
+    opacity: 1;
+    animation: slideUp 4s linear 1, sideSway 2s  ease-in-out 4 alternate;
+    animation-fill-mode: forwards;
+    animation-delay: 0.7s;
+}
+.a2 {
+    left: 55%;
+    transform: scale(1);
+    opacity: 1;
+    animation: slideUp 5s linear 1, sideSway 4s  ease-in-out 2 alternate;
+    animation-fill-mode: forwards;
+    animation-delay: 0.7s;
+}
+.a3 {
+    left: 10%;
+    transform: scale(0.8);
+    opacity: 1;
+    animation: slideUp 7s linear 1, sideSway 2s  ease-in-out 6 alternate;
+    animation-fill-mode: forwards;
+    animation-delay: 0.7s;
+}
+
+@keyframes slideUp {
+    0% {
+       top: 0;
+    }
+    100% {
+        top: -600px;
+    }
+}
+
+@keyframes sideSway {
+    0% {
+        margin-left: 0px;
+    }
+    100% {
+        margin-left: 50px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .valentine {
+        font-size: 30px; /* Mengecilkan font agar pas di layar HP */
+        margin: 20px; /* Mengurangi margin agar tidak terlalu lebar */
+    }
+
+    #envelope {
+        width: 90%; /* Menyesuaikan lebar amplop agar proporsional */
+        height: auto; /* Menghindari tinggi tetap */
+        aspect-ratio: 280 / 180; /* Menjaga rasio aspek amplop */
+    }
+
+    .letter {
+        width: 85%; /* Menyesuaikan ukuran surat */
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .reset button {
+        left: 50%; /* Menempatkan tombol di tengah */
+        transform: translateX(-50%);
+        margin-top: 50px; /* Mengurangi jarak agar lebih pas */
+        font-size: 12px; /* Mengecilkan ukuran font tombol */
+        padding: 8px; /* Mengurangi padding agar tidak terlalu besar */
+    }
+}
+.reset {
+    text-align: center;
+}
+
+.reset button {
+    font-weight: 800;
+    font-style: normal;
+    transition: all 0.1s linear;
+    background-color: transparent;
+    border: solid 2px #FF6863;
+    border-radius: 4px;
+    color: #FF6863;
+    display: inline-block;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 20px;
+    margin-top: 100px;
+    padding: 10px;
+    line-height: 2em;
+    text-decoration: none;
+    min-width: 150px;
+    outline: none;
+    position: absolute;
+    left: 60%; /* Geser ke kanan dari surat */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.reset button:hover {
+    background-color: #FF6863;
+    cursor: pointer;
+    color: white;
+}
+
+.valentine {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color:rgb(20, 20, 20);
+    font-size: 70px;
+    margin: 150px;
+}
+
+.love-frame {
+    width: 250px;
+    height: 250px;
+    border: 8px solid #ff4d6d;
+    border-radius: 20px;
+    background: #fff0f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto; /* Tambahkan jarak agar tidak terlalu dekat */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.love-frame img {
+    width: 95%;
+    height: 95%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+
+.love-frame::before,
+.love-frame::after {
+    content: "❤️";
+    font-size: 30px;
+    position: absolute;
+}
+
+.love-frame::before {
+    top: 82%;
+    left: 41%;
+}
+
+.love-frame::after {
+    bottom: -16%;
+    right: 41%;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+.love-text {
+    position: absolute;
+    bottom: 10px; /* Muncul dari dalam foto */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Dancing Script', cursive; /* Font lebih romantis */
+    color: red;
+    opacity: 0;
+    z-index: 999; /* Supaya muncul di layer paling depan */
+    transition: transform 6s ease-in-out, opacity 2s ease-in-out;
+}
+
+.love-text.show {
+    opacity: 1;
+    animation: floatUp 6s ease-in-out forwards;
+}
+
+/* Animasi naik dengan efek goyangan kecil */
+@keyframes floatUp {
+    0% { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
+    25% { transform: translateX(-48%) translateY(-25vh) scale(1.1); }
+    50% { transform: translateX(-52%) translateY(-50vh) scale(1); }
+    75% { transform: translateX(-50%) translateY(-75vh) scale(1.1); }
+    100% { transform: translateX(-50%) translateY(-100vh) scale(1); opacity: 0; }
+}
+
+.fly-up {
+    animation: loveFly 2s ease-in-out forwards;
+}
+
+@keyframes loveFly {
+    0% {
+        transform: translate(-50%, -50%) scale(0.1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -60%) scale(1.2);
+    }
+    100% {
+        transform: translate(-50%, -200%) scale(1);
+        opacity: 0;
+    }
+}
+
+#music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff4081;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease-in-out;
+}
+
+#music-btn:hover {
+    background: #e91e63;
+}
+
+/* Styling untuk Audio Player */
+audio {
+    width: 300px; /* Lebar player */
+    height: 40px;
+    background: #ff4d6d; /* Warna latar */
+    border-radius: 10px; /* Sudut membulat */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+    display: block;
+    margin: 20px auto; /* Tengah */
+}
+
+/* Styling untuk Kontrol Audio */
+audio::-webkit-media-controls-panel {
+    background-color: #ff4d6d; /* Warna latar */
+    border-radius: 10px;
+}
+
+/* Warna tombol Play/Pause */
+audio::-webkit-media-controls-play-button {
+    background-color: white;
+    border-radius: 50%;
+}
+
+/* Warna Volume */
+audio::-webkit-media-controls-volume-slider {
+    background-color: white;
+    border-radius: 5px;
+}
